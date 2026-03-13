@@ -1,0 +1,72 @@
+name: Build NetDiag
+
+on:
+  push:
+    tags:
+      - "v*"  
+
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest,  windows-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build app
+        shell: bash
+        run: |
+          if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+            # macOS 
+            rm -rf build dist &&
+            python3 setup.py py2app
+          fi
+
+      - name: Zip app
+        shell: bash
+        run: | 
+          if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+            cd dist
+            zip -r NetDiag-mac.zip NetDiag.app
+          fi
+      
+
+      - name: Create DMG
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew install create-dmg
+          create-dmg \
+            --volname "NetDiag" \
+            --window-size 500 300 \
+            --icon-size 100 \
+            --app-drop-link 350 120 \
+            dist/NetDiag.dmg \
+            dist/NetDiag.app
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            dist/*.zip
+            dist/*.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

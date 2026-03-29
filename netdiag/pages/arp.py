@@ -29,7 +29,7 @@ class ArpPage(BasePage):
 
         self._table = make_table(["IP Address", "MAC Address"])
         self._outer.addWidget(self._table, 1)
-        self._run()
+
 
     def _run(self):
         self._btn.setEnabled(False)

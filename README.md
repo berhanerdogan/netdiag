@@ -1,6 +1,6 @@
 # NetDiag — Network Diagnostic Logger
 
-A macOS network diagnostic tool built with Python and PyQt6, backed by SQLite. Run pings, resolve DNS, inspect your network interface, scan ARP tables, and keep a persistent log of every operation — all from a clean dark-mode GUI.
+A macOS network diagnostic tool built with Python and PyQt6, backed by SQLite. Run pings, resolve DNS, inspect your network interface, scan ARP tables, scan ports, and keep a persistent log of every operation — all from a clean dark-mode GUI.
 
 ---
 
@@ -10,6 +10,7 @@ A macOS network diagnostic tool built with Python and PyQt6, backed by SQLite. R
 - **DNS Lookup** — resolve any domain to its IP address
 - **Network Info** — inspect your MAC address, IP, and interface details
 - **ARP Scan** — discover devices on your local network
+- **Port Scanner** — scan all 65535 ports on any host or IP, identify open ports and known services
 - **Log Viewer** — every command is persisted to SQLite with timestamp, target, result, and status
 - **Analyze** — usage breakdown of all commands run, success rate at a glance
 

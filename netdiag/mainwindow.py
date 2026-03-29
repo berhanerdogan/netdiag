@@ -10,7 +10,7 @@ from netdiag.theme import C
 from netdiag.widgets import PulsingDot, SidebarButton
 from netdiag.database import Database
 from netdiag.pages import (
-    PingPage, DnsPage, NetInfoPage, ArpPage, LogPage, AnalyzePage
+    PingPage, DnsPage, NetInfoPage, ArpPage, LogPage, AnalyzePage, PortScanPage
 )
 
 
@@ -22,6 +22,7 @@ class Sidebar(QFrame):
         ("◈", "DNS Lookup",   C["dns"]),
         ("◉", "Network Info", C["net"]),
         ("⬡", "ARP Scan",     C["arp"]),
+        ("⊕", "Port Scan",    C["portscan"]),
         ("≡", "Log Viewer",   C["log"]),
         ("◎", "Analyze",      C["analyze"]),
     ]
@@ -152,8 +153,10 @@ class MainWindow(QMainWindow):
             DnsPage(self._db),
             NetInfoPage(self._db),
             ArpPage(self._db),
+            PortScanPage(self._db),
             LogPage(self._db),
             AnalyzePage(self._db),
+
         ]
         for p in self._pages:
             p.status_msg.connect(self._status_bar.set_message)

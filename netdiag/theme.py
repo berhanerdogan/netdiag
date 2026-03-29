@@ -18,4 +18,5 @@ C = {
     "arp":      "#f5a623",
     "log":      "#06b6d4",
     "analyze":  "#ec4899",
+    "portscan": "#f97316",
 }

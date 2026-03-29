@@ -1,5 +1,12 @@
 # NetDiag — Network Diagnostic Logger
 
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat&logo=python&logoColor=white)
+![PyQt6](https://img.shields.io/badge/PyQt6-6.x-41CD52?style=flat&logo=qt&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-macOS-000000?style=flat&logo=apple&logoColor=white)
+![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)
+![Release](https://img.shields.io/github/v/release/berhanerdogan/netdiag?style=flat&label=Latest%20Release&color=orange)
+
 A macOS network diagnostic tool built with Python and PyQt6, backed by SQLite. Run pings, resolve DNS, inspect your network interface, scan ARP tables, scan ports, and keep a persistent log of every operation — all from a clean dark-mode GUI.
 
 ---
